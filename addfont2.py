@@ -70,11 +70,11 @@ if __name__ == '__main__':
     output_filename = 'output.png'
 
     d4 = {
-        'text': '12345678987654321',
-        'position': (2100, 1950),
+        'text': '最低存額',
+        'position': (1900, 1900),
         'fontname': 'msjh.ttf',  # 請確保這個字體文件存在
-        'fontsize': 100,
-        'box_size': (300, 300),
+        'fontsize': 95,
+        'box_size': (380, 190),
         'alignment': 'center',
         'fill': (0, 0, 255)
     }
