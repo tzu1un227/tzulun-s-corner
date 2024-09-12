@@ -1,3 +1,4 @@
+#文字超範圍會換行
 from PIL import Image, ImageDraw, ImageFont
 
 def add_text(image, text, position, fontname, fontsize, box_size, alignment='left', fill=(255, 0, 0)):
@@ -60,7 +61,7 @@ def add_texts(imagefile: str, output_filename: str, textsettings: list[dict]):
         except Exception as e:
             print(f'Error processing settings: {d}')
             print(e)
-    image.save(output_filename)
+    # image.save(output_filename)
     return image
 
 if __name__ == '__main__':
