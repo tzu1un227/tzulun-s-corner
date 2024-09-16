@@ -55,7 +55,7 @@ def add_texts(imagefile: str, output_filename: str, textsettings: list[dict]):
         except Exception as e:
             print(f'Error processing settings: {d}')
             print(e)
-    image.save(output_filename)
+    # image.save(output_filename)
     return image
 
 if __name__ == '__main__':
@@ -65,13 +65,13 @@ if __name__ == '__main__':
     output_filename = 'output.png'
 
     # d4 = {'text': '最低','position': (1900, 1850),'fontname': 'msjh.ttf','fontsize': 150,'box_size': (380, 190),'alignment': 'center','fill': (0, 0, 255)}
-    d1={'text':'數位存款','position':(510,170),'fontname':'msjh.ttf','fontsize':200,'box_size': (670, 292),'alignment':'center','fill':(0, 0, 255)}
-    d2={'text':'台幣','position':(220,1850),'fontname':'msjh.ttf','fontsize':200,'box_size': (412, 157),'alignment':'center','fill':(0, 0, 255)}
-    d3={'text':'外匯1234579','position':(1066,1850),'fontname':'msjh.ttf','fontsize':200,'box_size': (412, 157),'alignment':'center','fill':(0, 0, 255)}
+    d1={'text':'外匯優利率','position':(510,170),'fontname':'msjh.ttf','fontsize':200,'box_size': (670, 292),'alignment':'center','fill':(0, 0, 255)}
+    d2={'text':'手續費','position':(220,1850),'fontname':'msjh.ttf','fontsize':200,'box_size': (412, 157),'alignment':'center','fill':(0, 0, 255)}
+    d3={'text':'利率','position':(1066,1850),'fontname':'msjh.ttf','fontsize':200,'box_size': (412, 157),'alignment':'center','fill':(0, 0, 255)}
     d4={'text':'最低存額','position':(1884,1850),'fontname':'msjh.ttf','fontsize':200,'box_size': (412, 157),'alignment':'center','fill':(0, 0, 255)}
-    d5={'text':'+0.215%','position':(220,2100),'fontname':'msjh.ttf','fontsize':200,'box_size': (423, 223),'alignment':'center','fill':(255, 0, 0)}
-    d6={'text':'3.5%456','position':(1066,2100),'fontname':'msjh.ttf','fontsize':200,'box_size': (423, 223),'alignment':'center','fill':(255, 0, 0)}
-    d7={'text':'3.9折123456789','position':(1884,2100),'fontname':'msjh.ttf','fontsize':200,'box_size': (423, 223),'alignment':'center','fill':(255, 0, 0)}
+    d5={'text':'0元','position':(220,2100),'fontname':'msjh.ttf','fontsize':200,'box_size': (423, 223),'alignment':'center','fill':(255, 0, 0)}
+    d6={'text':'3.5%','position':(1066,2100),'fontname':'msjh.ttf','fontsize':200,'box_size': (423, 223),'alignment':'center','fill':(255, 0, 0)}
+    d7={'text':'100美元','position':(1884,2100),'fontname':'msjh.ttf','fontsize':200,'box_size': (423, 223),'alignment':'center','fill':(255, 0, 0)}
 
     image=add_texts(image_path,output_filename,[d1,d2,d3,d4,d5,d6,d7])
     image.show()

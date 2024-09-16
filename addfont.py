@@ -1,11 +1,15 @@
 # from turtle import pen
 from PIL import Image, ImageDraw, ImageFont
 
+from IOevent import gameevent
+from sensors.img import static_tmp_path
+from system_setting import serverurl,outport
+
 def add_text(image, text:str, position:tuple, fontname:str, fontsize:int, alignment:str='left', fill:tuple=(255, 0, 0)):
     draw = ImageDraw.Draw(image)
     #text_width, text_height = draw.textlength(text,font=font)
     # 设置字体
-    font = ImageFont.truetype(fontname, fontsize)  # 字体文件路径和字体大小
+    font = ImageFont.truetype(f"sensors/addfont/{fontname}", fontsize)  # 字体文件路径和字体大小
 
     #font = ImageFont.truetype("msjh.ttf", fontsize)  # 字体文件路径和字体大小
     left, top, right, bottom=font.getbbox(text)
@@ -25,17 +29,30 @@ def add_text(image, text:str, position:tuple, fontname:str, fontsize:int, alignm
     new_im=image.convert('RGB')
     return new_im
 
-def add_texts(imagefile:str,output_filename:str,textsettings:list[dict]):
-    image = Image.open(imagefile)
+# def add_texts_localtest(imagefile:str,output_filename:str,textsettings:list[dict]):
+#     image = Image.open(imagefile)
+#     for d in textsettings:
+#         try:
+#             image=add_text(image,**d)
+#         except:
+#             print(f'wrong:{d}')
+#     image.save(output_filename)
+#     #image.show()
+
+#     return image
+
+def add_texts(imagefile:str,mevent:gameevent,tag:str,textsettings:list[dict]):
+    image = Image.open(f"sensors/addfont/{imagefile}")
     for d in textsettings:
         try:
             image=add_text(image,**d)
-        except:
+        except Exception as e:
             print(f'wrong:{d}')
-    image.save(output_filename)
+            print(e)
+    image.save(f"{static_tmp_path}/{mevent.user_id}_{tag}.png")
     #image.show()
 
-    return image
+    return f"https://{serverurl}:{outport}/result/{mevent.user_id}_{tag}"
 
 if __name__ == '__main__':
     import os
