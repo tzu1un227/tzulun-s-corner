@@ -66,6 +66,24 @@ def add_texts(imagefile: str, output_filename: str, textsettings: list[dict]):
     # image.save(output_filename)
     return image
 
+def check_fields_length(input_string):
+    # 定义每个栏位的上限
+    length_limits = [10, 8, 8, 8, 10, 10, 10]
+    
+    # 将输入字符串按换行符分割成列表
+    fields = input_string.split('\n')
+    
+    # 检查栏位数是否正确
+    if len(fields) != 7:
+        return "輸入的欄位數量不正確，請確保有七個欄位"
+    
+    # 检查每个栏位的长度
+    for i, field in enumerate(fields):
+        if len(field) > length_limits[i]:
+            return f"欄位{i + 1}超過上限，請重新輸入，最多{length_limits[i]}字"
+    
+    return "所有欄位的長度都在上限內。"
+
 if __name__ == '__main__':
     import os
     os.system('cls') 
@@ -162,5 +180,5 @@ if __name__ == '__main__':
         'line_limit': 5  # 超過5個字換行
     }
 
-    image = add_texts(image_path, 'output', [d1, d2, d3, d4, d5, d6, d7])
-    image.show()
+    # image = add_texts(image_path, 'output', [d1, d2, d3, d4, d5, d6, d7])
+    # image.show()
