@@ -150,7 +150,7 @@ if __name__ == '__main__':
     }
 
     d7 = {
-        'text': '一二三',
+        'text': '一二三四',
         'position': (1890, 2100),
         'fontname': 'msjh.ttf',
         'max_fontsize': 120,
