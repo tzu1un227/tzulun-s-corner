@@ -21,7 +21,7 @@ while(True):
     id = input("學號 > ")
     if id == 'q':
         break
-    for i in range(1,total_num):
+    for i in range(1,int(total_num)):
         if str(sh[f'A{i}'].value) == id:
             score = input("分數 > ")
             sh[f'B{i}'].value = score
