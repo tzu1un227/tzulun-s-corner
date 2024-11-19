@@ -104,7 +104,7 @@ if __name__ == '__main__':
 
     d2 = {
         'text': '一二三四五六七八',
-        'position': (250, 1875),
+        'position': (260, 1875),
         'fontname': 'msjh.ttf',
         'max_fontsize': 150,
         'min_fontsize': 70,
@@ -117,7 +117,7 @@ if __name__ == '__main__':
 
     d3 = {
         'text': '一二三',
-        'position': (1080, 1875),
+        'position': (1093, 1875),
         'fontname': 'msjh.ttf',
         'max_fontsize': 120,
         'min_fontsize': 70,
@@ -130,7 +130,7 @@ if __name__ == '__main__':
 
     d4 = {
         'text': '一',
-        'position': (1920, 1875),
+        'position': (1929, 1875),
         'fontname': 'msjh.ttf',
         'max_fontsize': 120,
         'min_fontsize': 70,
@@ -180,5 +180,5 @@ if __name__ == '__main__':
         'line_limit': 5  # 超過5個字換行
     }
 
-    # image = add_texts(image_path, 'output', [d1, d2, d3, d4, d5, d6, d7])
-    # image.show()
+    image = add_texts(image_path, 'output', [d1, d2, d3, d4, d5, d6, d7])
+    image.show()
