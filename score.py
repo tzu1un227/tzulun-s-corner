@@ -1,13 +1,13 @@
 '''
 事前準備:
-1.準備一個excel檔，第一個colume放全部學生的學號
+1.準備一個excel檔，第一個colume放全部學生的學號，第二個colume放全部學生的姓名
 2.填試算表檔名
 3.填工作表名稱
 4.填班級總人數
 '''
 excel_name = 'score.xlsx'
 sheet_name = '工作表1'
-total_num = 64 #填總人數，
+total_num = 155 #填總人數，
 # 導入函式庫
 import openpyxl
 
@@ -29,8 +29,9 @@ while(True):
         break
     for i in range(1,int(total_num)+2):
         if str(sh[f'A{i}'].value) == id:
+            print("姓名:",sh[f'B{i}'].value)
             score = input("分數 > ")
-            sh[f'B{i}'].value = score
+            sh[f'C{i}'].value = score
             break
         elif sh[f'A{i}'].value == None:
             print("學號錯誤")
