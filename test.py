@@ -3,7 +3,8 @@ import socket
 try:
     s = socket.socket()
     s.settimeout(5)  # 最多等 5 秒
-    s.connect(("irl-svr.ee.yzu.edu.tw", 80))
+    # s.connect(("irl-svr.ee.yzu.edu.tw", 80))
+    s.connect(("yzuirl.synology.me", 518))
     print("✅ 連線成功")
 except socket.timeout:
     print("❌ 連線超時（timeout）")
