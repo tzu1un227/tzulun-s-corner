@@ -3,28 +3,25 @@ import threading
 import keyboard
 import time
 
-clicking = False  # 是否正在連點
-interval = 0.05   # 點擊間隔（秒）
+clicking = False
+interval = 0.05  # 點擊間隔（可調整速度）
 
 def click_loop():
     while True:
         if clicking:
             pyautogui.click()
-            time.sleep(interval)
+        time.sleep(interval)
 
 def toggle_clicking():
     global clicking
     clicking = not clicking
-    
-def test_key():
-    print("F8 被偵測到！")
+    print("▶️ 連點中..." if clicking else "⏹️ 停止連點")
 
-# 開啟點擊執行緒
+# 啟動點擊執行緒
 threading.Thread(target=click_loop, daemon=True).start()
 
-# 監聽 F8 鍵做啟動/停止
-print("按下 F8 開啟或停止連點，按下 ESC 離開程式")
-
+# 設定熱鍵（可在背景運作）
 keyboard.add_hotkey('F8', toggle_clicking)
-keyboard.add_hotkey('F8', test_key)
+
+print("已啟動背景連點器\n🔘 F8 開關連點\n🔚 ESC 離開程式")
 keyboard.wait('esc')
