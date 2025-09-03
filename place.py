@@ -4,20 +4,22 @@ url = f"https://places.googleapis.com/v1/places:searchNearby?key=AIzaSyBp1b7fufM
 
 headers = {
     "Content-Type": "application/json",
-    "X-Goog-FieldMask": "places.displayName"
+    "X-Goog-FieldMask": "places.displayName,places.googleMapsLinks.directionsUri"
 }
 
 request_body = {
     "locationRestriction": {
         "circle": {
             "center": {
-                "latitude": 25.0330,   # 台北101
-                "longitude": 121.5654
+                "latitude": 24.9607,   
+                "longitude": 121.0619
             },
-            "radius": 500
+            "radius": 5000
         }
     },
-    "maxResultCount": 5
+    "maxResultCount": 3,
+    "includedTypes":["bank"],
+    "rankPreference": "DISTANCE"
 }
 
 response = requests.post(url, headers=headers, json=request_body)
