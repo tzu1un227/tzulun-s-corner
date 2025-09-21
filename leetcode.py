@@ -1,32 +1,22 @@
-s = "42"
-UNDERZERO = False
-result = ""
+s = "aab"
+p = "c*a*b"
 
-for c in range(len(s)):
-    if s[c] != " ":
-        s=s[c:]
-        break
+m, n = len(s), len(p)
+dp = [[False] * (n+1) for _ in range(m+1)]
+dp[0][0] = True
 
-if s:
-    if s[0]=="-":
-        UNDERZERO = True
-        s=s.replace("-","")
-    elif s[0]=="+":
-        s=s.replace("+","")
+for j in range(1,n):
+    if p[j-1]=="*":
+        dp[0][j]=dp[0][j-2]
 
-for c in range(len(s)+1):
-    
-    if c == len(s) or not s[c].isdigit():
-        result = s[:c]
-        if result and UNDERZERO:
-            result = "-"+result
-        break
+for i in range(1,m+1):
+    for j in range(1,n+1):
+        if p[j-1]=="*":
+            dp[i][j]=dp[i][j-2]
+            if p[j-2] in [s[i-1],"."]:
+                dp[i][j]=dp[i][j] or dp[i-1][j]
+        elif p[j-1] in [s[i-1],"."]:
+            dp[i][j]=dp[i-1][j-1]
 
-result = int(result) if result else 0
-
-if result < -(2**31):
-    result = -2**31
-elif result > 2**31:
-    result = 2**31 - 1
-
-print(result)
+print(dp)
+print(dp[m][n])
