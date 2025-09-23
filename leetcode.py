@@ -1,22 +1,16 @@
-n = 3
-parentheses_list = ["()"] * n*2
-result_list = []
-temp = []
+def jump(nums):
 
-def BT(index):
-    if len(temp) == n * 2:
-        result_list.append("".join(temp))
-        return
+    dp = [len(nums)] * len(nums)
+    dp[0] = 0
     
-    for c in parentheses_list[index]:
-        if (temp.count("(") == temp.count(")") and c == ")") or (temp.count("(") == n and c == "("):
-            continue
+    for i in range(0, len(nums) - 1):
+        for j in range(1, nums[i]+1):
+            if i + j >= len(nums) :
+                continue
+            if dp[i+j] > dp[i] + 1:
+                dp[i+j] = dp[i] + 1
 
-        temp.append(c)
-        BT(index+1)
-        temp.pop()
+    return dp[-1]
 
-BT(0)
-
-print(parentheses_list)
-print(result_list)
+nums = [1,3,2]
+print(jump(nums))
