@@ -1,14 +1,13 @@
-def canJump(nums) -> bool:
-    currEnd = 0
-    for i in range(len(nums)):
-        if currEnd >= len(nums) -1 :
-            return True
-        if i > currEnd:
-            return False
-        if i+nums[i] >= currEnd:
-            currEnd = i+nums[i]
+def climbStairs(n):
+    steps = 0
+    def DFS(temp,step ,n)->int:
+        temp += step
+        if temp + step >= n:
+            return 1
+        DFS(temp , 2, n)
+        DFS(temp , 1, n)
 
-    return False
+    steps += DFS(steps, 0, n)
+    return steps
 
-
-print(canJump([2,5,0,0]))
+print(climbStairs(3))
