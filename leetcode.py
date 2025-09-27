@@ -1,13 +1,12 @@
-def climbStairs(n):
-    steps = 0
-    def DFS(temp,step ,n)->int:
-        temp += step
-        if temp + step >= n:
-            return 1
-        DFS(temp , 2, n)
-        DFS(temp , 1, n)
+def mergeTwoLists(list1, list2):
+    result = []
+    while list1 or list2:
+        if not list1 or list1[0] > list2[0]:
+            result.append(list2[0])
+            list2.pop(0)
+        elif not list2 or list1[0] <= list2[0]:
+            result.append(list1[0])
+            list1.pop(0)
+    return result
 
-    steps += DFS(steps, 0, n)
-    return steps
-
-print(climbStairs(3))
+print(mergeTwoLists(list1 = [1,2,4], list2 = [1,3,4]))
