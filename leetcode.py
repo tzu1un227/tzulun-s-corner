@@ -1,7 +1,8 @@
-def triangularSum(nums):
-    if len(nums) == 1:
-        return nums[0]
-    for i in range(len(nums)-1):
-            nums[i]=nums[i]+nums[i+1]
-    return triangularSum(nums[:-1]) % 10
-print(triangularSum([1,2,3,4,5]))
+def uniquePaths(m, n):
+    dp = [[1 for _ in range(n)] for _ in range(m)]
+    dp[0][0] = 0
+    for i in range(1, m):
+        for j in range(1, n):
+            dp[i][j] = dp[i-1][j] + dp[i][j-1]
+    return dp[-1][-1]
+print(uniquePaths(m = 3, n = 7))
