@@ -12,5 +12,9 @@ def test_http_connection(url):
 
 # 範例使用
 # test_http_connection("https://www.google.com")
-test_http_connection("https://irl-svr.ee.yzu.edu.tw:4999/bot1/callback")
+test_http_connection("https://irl-svr.ee.yzu.edu.tw:5009/bot1/callback")
+# test_http_connection("https://140.138.176.197:4999/bot1/callback")
+# test_http_connection("https://irl-svr.ee.yzu.edu.tw:80")
+# test_http_connection("http://140.138.176.197:80")
+# test_http_connection("https://deb.debian.org:80")
 # test_http_connection("https://yzuirl.synology.me:516")
