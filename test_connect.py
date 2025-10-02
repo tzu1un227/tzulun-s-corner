@@ -2,7 +2,7 @@ import requests
 
 def test_http_connection(url):
     try:
-        response = requests.get(url, timeout=5)  # 設定 5 秒逾時
+        response = requests.get(url, timeout=15)  # 設定 15 秒逾時
         if response.status_code == 200:
             print(f"成功連線到 {url}！")
         else:
@@ -12,4 +12,5 @@ def test_http_connection(url):
 
 # 範例使用
 # test_http_connection("https://www.google.com")
-test_http_connection("https://irl-svr.ee.yzu.edu.tw:4999")
+test_http_connection("https://irl-svr.ee.yzu.edu.tw:4999/bot1/callback")
+# test_http_connection("https://yzuirl.synology.me:516")
