@@ -98,7 +98,6 @@ def get_event(index,source,events):
     if index == len(source):
         run_fixed_times(events, TIMES)
         return
-    
     event = {
                 "type": source[index][0].lower().capitalize(),
                 "message": source[index][1],
@@ -150,14 +149,8 @@ if __name__ == "__main__":
         else :
             #
             print(" 格式不正確喔! 範例:python 一次發送單一訊息.py <type> <content> <user-id>")  #type第一個字大寫，content是字串            
-            
-     
-
-                    
-
     except Exception as e:
         print(f"⚠️ 無法連線至 Socket.IO 伺服器: {e}")
     finally:
         sio.disconnect()
         executor.shutdown(wait=True)
-
