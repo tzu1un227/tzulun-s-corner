@@ -1,17 +1,34 @@
 import requests
+import json
 
-url = "http://irl-svr.ee.yzu.edu.tw/.well-known/acme-challenge/test.txt"
+API_KEY = "AIzaSyBp1b7fufMPm3H0hZUC8pbPGpwoSCvpTDg"  # 換成你自己的
+URL = "https://places.googleapis.com/v1/places:searchText"
 
-try:
-    response = requests.get(url, timeout=10)  # 10秒超時
-    if response.status_code == 200:
-        print("可以訪問！內容如下：")
-        print(response.text)
-    else:
-        print(f"訪問失敗，HTTP 狀態碼: {response.status_code}")
-except requests.exceptions.Timeout:
-    print("訪問超時！")
-except requests.exceptions.ConnectionError:
-    print("無法連線到伺服器！")
-except Exception as e:
-    print("其他錯誤：", e)
+def text_search_with_routing():
+    query = "台北 便利商店"
+
+    body = {
+        "textQuery": query,
+        "routingParameters": {
+            "origin": {
+                "latitude": 25.033964,
+                "longitude": 121.564468
+            },
+            # 可選 travelMode／routingPreference 等：
+            "travelMode": "DRIVE",
+            # "routingPreference": "TRAFFIC_UNAWARE"
+        }
+    }
+
+    headers = {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": API_KEY,
+        "X-Goog-FieldMask": "places.displayName,places.formattedAddress,routingSummaries"
+    }
+
+    resp = requests.post(URL, headers=headers, data=json.dumps(body))
+    print(f"狀態碼: {resp.status_code}")
+    print(resp.text)
+
+if __name__ == "__main__":
+    text_search_with_routing()
