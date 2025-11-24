@@ -9,6 +9,10 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import Tool
 from langchain_community.utilities import SearchApiAPIWrapper
+from langchain_xai import ChatXAI
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+
 
 
 load_dotenv()
@@ -165,7 +169,9 @@ def langchain_web_search_agent(user_message: str):
     print("--- 使用新的 LangChain Agent Executor 建立網路搜尋 Chain ---")
     try:
         # 1. 初始化 LLM 模型和工具
-        llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        # llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        llm = ChatXAI(model_name="grok-3", api_key=os.getenv("XAI_API_KEY"))
+        # llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0, convert_system_message_to_human=True)
         
         # 2. 定義系統提示語
         system_message = (
@@ -192,7 +198,7 @@ def langchain_web_search_agent(user_message: str):
             ]
         })
         
-        print(f"\n[LangChain Agent 最終回覆]\n{result['messages'][-1].content}")
+        print(f"\n[LangChain Agent 最終回覆]\n{result['messages']}")
 
     except Exception as e:
         print(f"\n發生錯誤: {e}")
@@ -200,6 +206,7 @@ def langchain_web_search_agent(user_message: str):
 
 # 範例使用
 langchain_web_search_agent("幫我查詢台幣對日幣的匯率是多少，並引用來源。")
+langchain_web_search_agent("100 公里等於多少英里？")
 # grok_web_search("ImportError: cannot import name 'create_tool_calling_agent' from 'langchain.agents' 怎麼解決")
 # gemini_web_search("96分鐘什麼時候上映?請提供最新的資訊並引用來源。")
 # gpt_web_search("哪一隻MLB球隊對徐若熙感興趣?請提供最新的資訊並引用來源。")
