@@ -5,6 +5,7 @@ from nacl.signing import SigningKey
 # 生成金鑰對（僅需生成一次，私鑰保密，公鑰給程式 Y）
 signing_key = SigningKey.generate()
 verify_key = signing_key.verify_key
+print(verify_key.encode().hex())
 
 # 1. 生成隨機數列
 random_numbers = [secrets.randbelow(1000) for _ in range(10)]
