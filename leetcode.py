@@ -1,42 +1,19 @@
-def isValidSudoku(board):
-    rows = [set() for _ in range(9)]
-    cols = [set() for _ in range(9)]
-    boxes = [set() for _ in range(9)]
+def longestConsecutive(nums):
+    set_nums = set(nums)
+    sorted_num = sorted(set_nums)
+    result = 1
+    temp_result = 1
+    for i in range(len(sorted_num)-1):
+        if sorted_num[i] == sorted_num[i+1] - 1:
+            temp_result += 1
+        else:
+            temp_result = 1
+        if temp_result > result:
+            result = temp_result
+    return result
     
-    for r in range(9):
-        for c in range(9):
-            val = board[r][c]
-            if val == ".":
-                continue
-            
-            box_idx = (r // 3) * 3 + (c // 3)
-            
-            if val in rows[r] or val in cols[c] or val in boxes[box_idx]:
-                return False
-            
-            rows[r].add(val)
-            cols[c].add(val)
-            boxes[box_idx].add(val)
-            
-    return True
+print(longestConsecutive([2,20,4,10,3,4,5]))
 
-    
-print(isValidSudoku([["1","2",".",".","3",".",".",".","."],
-                     ["4",".",".","5",".",".",".",".","."],
-                     [".","9","8",".",".",".",".",".","3"],
-                     ["5",".",".",".","6",".",".",".","4"],
-                     [".",".",".","8",".","3",".",".","5"],
-                     ["7",".",".",".","2",".",".",".","6"],
-                     [".",".",".",".",".",".","2",".","."],
-                     [".",".",".","4","1","9",".",".","8"],
-                     [".",".",".",".","8",".",".","7","9"]]))
+print(longestConsecutive([0,3,2,5,4,6,1,1]))
 
-print(isValidSudoku([["1","2",".",".","3",".",".",".","."],
-                     ["4",".",".","5",".",".",".",".","."],
-                     [".","9","1",".",".",".",".",".","3"],
-                     ["5",".",".",".","6",".",".",".","4"],
-                     [".",".",".","8",".","3",".",".","5"],
-                     ["7",".",".",".","2",".",".",".","6"],
-                     [".",".",".",".",".",".","2",".","."],
-                     [".",".",".","4","1","9",".",".","8"],
-                     [".",".",".",".","8",".",".","7","9"]]))
+print(longestConsecutive([0,-1]))
