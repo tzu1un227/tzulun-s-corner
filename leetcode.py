@@ -1,27 +1,23 @@
 def isValidSudoku(board):
+    rows = [set() for _ in range(9)]
+    cols = [set() for _ in range(9)]
+    boxes = [set() for _ in range(9)]
     
-    for i in range(9):
-        temp_raw_list = []
-        temp_col_list = []
-        temp_box_list = []
-        if board[i] in temp_raw_list and board[i] != ".":
-            return False
-        else:
-            temp_raw_list.append(board[i])
-
-        for j in range(9):
-            if board[i][j] in temp_col_list and board[i] != ".":
+    for r in range(9):
+        for c in range(9):
+            val = board[r][c]
+            if val == ".":
+                continue
+            
+            box_idx = (r // 3) * 3 + (c // 3)
+            
+            if val in rows[r] or val in cols[c] or val in boxes[box_idx]:
                 return False
-            else:
-                temp_col_list.append(board[i][j])
-        
-        for k in range(3):
-            for l in range(3):
-                if board[(i/3)*3+k][(i%3)*3+l] in temp_box_list and board[i] != ".":
-                    return False
-                else:
-                    temp_box_list.append(board[(i/3)*3+k][(i%3)*3+l])
-
+            
+            rows[r].add(val)
+            cols[c].add(val)
+            boxes[box_idx].add(val)
+            
     return True
 
     
